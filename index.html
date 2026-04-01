@@ -149,12 +149,17 @@ function startSlideshow(){
 }
 
 // MUSIC
+<script>
 function playMusic(){
-  document.getElementById("bgMusic").play().catch(()=>{});
+  let music = document.getElementById("bgMusic");
+  music.play().catch(()=>{});
 }
+
 function pauseMusic(){
-  document.getElementById("bgMusic").pause();
+  let music = document.getElementById("bgMusic");
+  music.pause();
 }
+</script>
 
 // FINAL LOVE MESSAGE
 function showFinalLove(){
