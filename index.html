@@ -12,7 +12,8 @@ body {
   font-family: 'Poppins', sans-serif;
   text-align: center;
   background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 h1 {
@@ -32,8 +33,9 @@ h1 {
 }
 
 #slide {
-  width: 280px;
-  height: 340px;
+  width: 90%;
+  max-width: 300px;
+  height: auto;
   border-radius: 20px;
   margin-top: 20px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
@@ -53,6 +55,7 @@ button:hover {
   background:#ff1e56;
 }
 
+/* Hearts animation */
 @keyframes floatUp {
   0% { transform: translateY(0); opacity:1; }
   100% { transform: translateY(-100vh); opacity:0; }
@@ -75,7 +78,16 @@ button:hover {
   <div class="line">Na epaume unoda kashtathula kuda irupa 🤝</div>
   <div class="line">Una na nalla pathupa ❤️</div>
   <div class="line">Finally… Thank you for everything 💖</div>
-   <div class="line">Finally… I love you Bhujuuuu 💖</div>
+
+  <!-- 💖 FINAL MESSAGE -->
+  <div id="finalLove" style="opacity:0; margin-top:40px;">
+    <h2 style="color:white;font-family:Pacifico;font-size:35px;">
+      I LOVE YOU BHUJUUU 💖
+    </h2>
+    <p style="color:white;font-size:18px;">
+      In every lifetime… I will choose you 💖
+    </p>
+  </div>
 </div>
 
 <div>
@@ -90,26 +102,29 @@ button:hover {
 </audio>
 
 <script>
-// COUNTDOWN
-let count = 1;
-let counter = setInterval(() => {
-  count++;
-  document.getElementById("count").innerText = count;
+// COUNTDOWN (FIXED)
+let num = 1;
+let countEl = document.getElementById("count");
 
-  if(count === 3){
-    clearInterval(counter);
+let timer = setInterval(() => {
+  countEl.innerText = num;
+
+  if(num === 3){
+    clearInterval(timer);
 
     setTimeout(()=>{
-      document.getElementById("count").style.display = "none";
+      countEl.style.display = "none";
       document.getElementById("mainTitle").style.display = "block";
 
       showLines();
       startSlideshow();
       playMusic();
-      showFinalSurprise();
+      showFinalLove();
 
     },1000);
   }
+
+  num++;
 },1000);
 
 // TEXT ANIMATION
@@ -135,11 +150,17 @@ function startSlideshow(){
 
 // MUSIC
 function playMusic(){
-  let music = document.getElementById("bgMusic");
-  music.play().catch(()=>{});
+  document.getElementById("bgMusic").play().catch(()=>{});
 }
 function pauseMusic(){
   document.getElementById("bgMusic").pause();
+}
+
+// FINAL LOVE MESSAGE
+function showFinalLove(){
+  setTimeout(() => {
+    document.getElementById("finalLove").style.opacity = 1;
+  }, 13000);
 }
 
 // HEARTS
@@ -154,8 +175,7 @@ for(let i=0;i<25;i++){
   heart.style.animationDuration = (3 + Math.random()*5) + "s";
   document.body.appendChild(heart);
 }
-
-<script>
+</script>
 
 </body>
 </html>
