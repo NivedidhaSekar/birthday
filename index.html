@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday 💖</title>
+<title>Happy Birthday ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
@@ -11,29 +11,32 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  overflow-x: hidden;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
+  overflow: hidden;
 }
 
 h1 {
   font-family: 'Pacifico', cursive;
-  font-size: 50px;
+  font-size: 55px;
   color: #ff1e56;
   display: none;
+  margin-top: 30px;
 }
 
 .line {
   opacity: 0;
-  color: white;
-  font-size: 18px;
+  color: #ffffff;
+  font-size: 20px;
   margin: 10px;
+  transition: 1s;
 }
 
 #slide {
-  width: 90%;
-  max-width: 300px;
+  width: 280px;
+  height: 340px;
   border-radius: 20px;
   margin-top: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 button {
@@ -43,15 +46,25 @@ button {
   border-radius:20px;
   background:#ff4d6d;
   color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover {
+  background:#ff1e56;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-100vh); opacity:0; }
 }
 </style>
 </head>
 
 <body onclick="playMusic()">
 
-<h2 id="count" style="font-size:50px;color:white;margin-top:100px;">1</h2>
+<h2 id="count" style="color:white;font-size:50px;margin-top:100px;">1</h2>
 
-<h1 id="title">🎉 Happy Birthday Bhujuuu 💖</h1>
+<h1 id="mainTitle">🎉 Happy Birthday Bhujuuu 💖</h1>
 
 <div id="message">
   <div class="line">Ne than enoda ulagam 💖</div>
@@ -64,91 +77,121 @@ button {
   <div class="line">Finally… Thank you for everything 💖</div>
 </div>
 
-<img id="slide" src="photo1.jpg">
+<div>
+  <img id="slide" src="photo1.jpg">
+</div>
 
-<br>
-
-<button onclick="playMusic()">▶ Play</button>
+<button onclick="playMusic()">▶ Play 💖</button>
 <button onclick="pauseMusic()">⏸ Pause</button>
 
-<audio id="music" loop>
-  <source src="Neelothi.mp3">
+<audio id="bgMusic" loop>
+  <source src="Neelothi.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+// COUNTDOWN
+let count = 1;
+let counter = setInterval(() => {
+  count++;
+  document.getElementById("count").innerText = count;
 
-// COUNTDOWN (WORKING)
-let num = 1;
-let countEl = document.getElementById("count");
-
-let timer = setInterval(() => {
-  countEl.innerText = num;
-
-  if(num === 3){
-    clearInterval(timer);
+  if(count === 3){
+    clearInterval(counter);
 
     setTimeout(()=>{
-      countEl.style.display = "none";
-      document.getElementById("title").style.display = "block";
+      document.getElementById("count").style.display = "none";
+      document.getElementById("mainTitle").style.display = "block";
 
       showLines();
-      startSlide();
+      startSlideshow();
       playMusic();
-
-      setTimeout(showFinal, 20000);
+      showFinalSurprise();
 
     },1000);
   }
-
-  num++;
-
 },1000);
 
-
-// TEXT
+// TEXT ANIMATION
 function showLines(){
   let lines = document.querySelectorAll(".line");
-  lines.forEach((l,i)=>{
+  lines.forEach((line, index) => {
     setTimeout(()=>{
-      l.style.opacity = 1;
-    }, i*1500);
+      line.style.opacity = 1;
+    }, index * 1500);
   });
 }
 
 // SLIDESHOW
-function startSlide(){
-  let imgs = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpeg","photo5.jpg"];
+function startSlideshow(){
+  let images = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpeg","photo5.jpg"];
   let i = 0;
 
   setInterval(()=>{
-    i = (i+1)%imgs.length;
-    document.getElementById("slide").src = imgs[i];
+    i = (i + 1) % images.length;
+    document.getElementById("slide").src = images[i];
   },2000);
 }
 
 // MUSIC
 function playMusic(){
-  document.getElementById("music").play().catch(()=>{});
+  let music = document.getElementById("bgMusic");
+  music.play().catch(()=>{});
 }
 function pauseMusic(){
-  document.getElementById("music").pause();
+  document.getElementById("bgMusic").pause();
 }
 
-// FINAL SCREEN
-function showFinal(){
-  document.body.innerHTML = `
-  <div style="height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#ff758c;color:white;text-align:center;">
-    
-    <img src="final.jpg" style="width:250px;border-radius:20px;margin-bottom:20px;">
-    
-    <h1 style="font-family:Pacifico;">I LOVE YOU BHUJUUU 💖</h1>
-    
-    <p>In every lifetime… I will choose you 💖</p>
-
-  </div>
-  `;
+// HEARTS
+for(let i=0;i<25;i++){
+  let heart = document.createElement("div");
+  heart.innerHTML = "💖";
+  heart.style.position = "fixed";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.top = "100vh";
+  heart.style.fontSize = "20px";
+  heart.style.animation = "floatUp 5s linear infinite";
+  heart.style.animationDuration = (3 + Math.random()*5) + "s";
+  document.body.appendChild(heart);
 }
 
+// FINAL SURPRISE
+function showFinalSurprise(){
+  setTimeout(() => {
+    
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#ff758c,#ff7eb3);
+        color:white;
+        text-align:center;
+        font-family:Poppins;
+      ">
+      
+      <img src="final.jpg" style="
+        width:260px;
+        height:320px;
+        border-radius:20px;
+        box-shadow:0 5px 20px rgba(0,0,0,0.3);
+        margin-bottom:20px;
+      ">
+
+      <h1 style="font-size:50px;font-family:Pacifico;">
+        I LOVE YOU BHUJUUU 💖
+      </h1>
+      
+      <p style="font-size:20px;margin-top:20px;">
+        In every lifetime… I will choose you 💖
+      </p>
+
+      </div>
+    `;
+    
+  }, 15000);
+}
 </script>
 
 </body>
