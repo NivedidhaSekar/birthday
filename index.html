@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Happy Birthday Bhujuuu ❤️</title>
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   overflow-x: hidden;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 50px;
+  color: #ff1e56;
+  margin-top: 40px;
+}
+
+p {
+  color: white;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.8;
 }
   <script>
 var password = "nivpri0215";  // 👉 you can change this
@@ -55,11 +70,47 @@ p {
   100% {transform: translateY(-120vh);}
 }
 </style>
+  <script>
+for(let i=0;i<20;i++){
+  let heart = document.createElement("div");
+  heart.innerHTML = "💖";
+  heart.style.position = "fixed";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.top = "100vh";
+  heart.style.fontSize = "20px";
+  heart.style.animation = "floatUp 5s linear infinite";
+  heart.style.animationDuration = (3 + Math.random()*5) + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+<style>
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-100vh); opacity:0; }
+}
+</style>
 </head>
 
 <body>
+  <h2 id="count" style="color:white;font-size:40px;">1</h2>
 
-<h1>🎉 Happy Birthday Bhujuuu ❤️</h1>
+<script>
+let count = 1;
+let counter = setInterval(() => {
+  count++;
+  document.getElementById("count").innerText = count;
+  if(count === 3){
+    clearInterval(counter);
+    setTimeout(()=>{
+      document.getElementById("count").style.display = "none";
+      document.getElementById("mainTitle").style.display = "block";
+    },1000);
+  }
+},1000);
+</script>
+
+<h1 id="mainTitle" style="display:none;">🎉 Happy Birthday Bhujuuu 💖</h1>
 
 <p>
 Ne than enoda ulagam 💖<br><br>
@@ -87,9 +138,8 @@ setInterval(function(){
 </script>
 
 <!-- Background Music -->
-<button onclick="playMusic()" style="padding:10px 20px;font-size:16px;border:none;border-radius:10px;background:#ff4d6d;color:white;margin-top:20px;">
-▶ Play Music 💖
-</button>
+<button onclick="playMusic()">▶ Play 💖</button>
+<button onclick="pauseMusic()">⏸ Pause</button>
 
 <audio id="bgMusic" loop>
   <source src="Neelothi.mp3" type="audio/mpeg">
@@ -98,6 +148,9 @@ setInterval(function(){
 <script>
 function playMusic(){
   document.getElementById("bgMusic").play();
+}
+function pauseMusic(){
+  document.getElementById("bgMusic").pause();
 }
 </script>
 
