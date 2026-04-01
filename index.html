@@ -156,15 +156,25 @@ function pauseMusic(){
 
 <!-- Balloons -->
 <script>
-for(let i=0;i<15;i++){
-  let b=document.createElement("div");
-  b.className="balloon";
-  b.style.left=Math.random()*100+"%";
-  b.style.backgroundColor=`hsl(${Math.random()*360},70%,60%)`;
-  b.style.animationDuration=(4+Math.random()*4)+"s";
-  document.body.appendChild(b);
+for(let i=0;i<20;i++){
+  let heart = document.createElement("div");
+  heart.innerHTML = "💖";
+  heart.style.position = "fixed";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.top = "100vh";
+  heart.style.fontSize = "20px";
+  heart.style.animation = "floatUp 5s linear infinite";
+  heart.style.animationDuration = (3 + Math.random()*5) + "s";
+  document.body.appendChild(heart);
 }
 </script>
+
+<style>
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-100vh); opacity:0; }
+}
+</style>
 
 </body>
 </html>
