@@ -18,27 +18,23 @@ body {
 
 h1 {
   font-family: 'Pacifico', cursive;
-  font-size: 55px;
+  font-size: 50px;
   color: #ff1e56;
   display: none;
-  margin-top: 30px;
 }
 
 .line {
   opacity: 0;
-  color: #ffffff;
-  font-size: 20px;
+  color: white;
+  font-size: 18px;
   margin: 10px;
-  transition: 1s;
 }
 
 #slide {
   width: 90%;
   max-width: 300px;
-  height: auto;
   border-radius: 20px;
   margin-top: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 button {
@@ -51,11 +47,8 @@ button {
   font-size:16px;
   cursor:pointer;
 }
-button:hover {
-  background:#ff1e56;
-}
 
-/* Hearts animation */
+/* hearts */
 @keyframes floatUp {
   0% { transform: translateY(0); opacity:1; }
   100% { transform: translateY(-100vh); opacity:0; }
@@ -63,9 +56,9 @@ button:hover {
 </style>
 </head>
 
-<body onclick="playMusic()">
+<body>
 
-<h2 id="count" style="color:white;font-size:50px;margin-top:100px;">1</h2>
+<h2 id="count" style="font-size:50px;color:white;margin-top:100px;">1</h2>
 
 <h1 id="mainTitle">🎉 Happy Birthday Bhujuuu 💖</h1>
 
@@ -79,20 +72,20 @@ button:hover {
   <div class="line">Una na nalla pathupa ❤️</div>
   <div class="line">Finally… Thank you for everything 💖</div>
 
-  <!-- 💖 FINAL MESSAGE -->
+  <!-- FINAL LOVE -->
   <div id="finalLove" style="opacity:0; margin-top:40px;">
-    <h2 style="color:white;font-family:Pacifico;font-size:35px;">
+    <h2 style="color:white;font-family:Pacifico;">
       I LOVE YOU BHUJUUU 💖
     </h2>
-    <p style="color:white;font-size:18px;">
+    <p style="color:white;">
       In every lifetime… I will choose you 💖
     </p>
   </div>
 </div>
 
-<div>
-  <img id="slide" src="photo1.jpg">
-</div>
+<img id="slide" src="photo1.jpg">
+
+<br>
 
 <button onclick="playMusic()">▶ Play 💖</button>
 <button onclick="pauseMusic()">⏸ Pause</button>
@@ -102,7 +95,7 @@ button:hover {
 </audio>
 
 <script>
-// COUNTDOWN (FIXED)
+// COUNTDOWN
 let num = 1;
 let countEl = document.getElementById("count");
 
@@ -117,8 +110,7 @@ let timer = setInterval(() => {
       document.getElementById("mainTitle").style.display = "block";
 
       showLines();
-      startSlideshow();
-      playMusic();
+      startSlide();
       showFinalLove();
 
     },1000);
@@ -127,43 +119,43 @@ let timer = setInterval(() => {
   num++;
 },1000);
 
-// TEXT ANIMATION
+// TEXT
 function showLines(){
   let lines = document.querySelectorAll(".line");
-  lines.forEach((line, index) => {
+  lines.forEach((l,i)=>{
     setTimeout(()=>{
-      line.style.opacity = 1;
-    }, index * 1500);
+      l.style.opacity = 1;
+    }, i*1500);
   });
 }
 
 // SLIDESHOW
-function startSlideshow(){
-  let images = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpeg","photo5.jpg"];
+function startSlide(){
+  let imgs = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpeg","photo5.jpg"];
   let i = 0;
 
   setInterval(()=>{
-    i = (i + 1) % images.length;
-    document.getElementById("slide").src = images[i];
+    i = (i+1)%imgs.length;
+    document.getElementById("slide").src = imgs[i];
   },2000);
 }
 
-// MUSIC
+// MUSIC CONTROL (FIXED)
+let music = document.getElementById("bgMusic");
+
 function playMusic(){
-  let music = document.getElementById("bgMusic");
   music.play().catch(()=>{});
 }
 
 function pauseMusic(){
-  let music = document.getElementById("bgMusic");
   music.pause();
 }
 
-// FINAL LOVE MESSAGE
+// FINAL MESSAGE
 function showFinalLove(){
-  setTimeout(() => {
+  setTimeout(()=>{
     document.getElementById("finalLove").style.opacity = 1;
-  }, 13000);
+  },13000);
 }
 
 // HEARTS
