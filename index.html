@@ -91,16 +91,19 @@ button:hover {
 
 <script>
 // COUNTDOWN
+<script>
+// COUNTDOWN FIXED
 let count = 1;
-let counter = setInterval(() => {
-  count++;
-  document.getElementById("count").innerText = count;
+let countEl = document.getElementById("count");
+
+let interval = setInterval(() => {
+  countEl.innerText = count;
 
   if(count === 3){
-    clearInterval(counter);
+    clearInterval(interval);
 
     setTimeout(()=>{
-      document.getElementById("count").style.display = "none";
+      countEl.style.display = "none";
       document.getElementById("mainTitle").style.display = "block";
 
       showLines();
@@ -110,7 +113,10 @@ let counter = setInterval(() => {
 
     },1000);
   }
+
+  count++;
 },1000);
+</script>
 
 // TEXT ANIMATION
 function showLines(){
