@@ -73,21 +73,21 @@ Finally… Thank you for everything 💖
 </p>
 
 <div>
-  <img id="slide" src="photo1.jpg" style="width:300px;height:350px;border-radius:15px;">
+  <img id="slide" src="photo1.jpg" style="width:300px;height:350px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
 </div>
 
 <script>
 let images = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpeg","photo5.jpg"];
-let i = 0;
+let index = 0;
 
 setInterval(function(){
-  i = (i + 1) % images.length;
-  document.getElementById("slide").src = images[i];
+  index = (index + 1) % images.length;
+  document.getElementById("slide").src = images[index];
 }, 2000);
 </script>
 
 <!-- Background Music -->
-<button onclick="playMusic()" style="padding:10px 20px;font-size:16px;border:none;border-radius:10px;background:#ff4d6d;color:white;">
+<button onclick="playMusic()" style="padding:10px 20px;font-size:16px;border:none;border-radius:10px;background:#ff4d6d;color:white;margin-top:20px;">
 ▶ Play Music 💖
 </button>
 
